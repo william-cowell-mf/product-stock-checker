@@ -19,6 +19,12 @@ const stockCheckerRegistrations: [string, StockCheckerFactory][] = [
     ], [
         'http(s?):\/\/www.johnlewis.com',
         (website) => new OutOfStockChecker(website, '#button--add-to-basket-out-of-stock'),
+    ], [
+        'http(s?):\/\/www.cosmetify.com',
+        (website) => new OutOfStockChecker(website, '.noStk'),
+    ], [
+        'http(s?):\/\/www.cultbeauty.co.uk',
+        (website) => new OutOfStockChecker(website, '.js-waitlist-header'),
     ],
 ]
 
