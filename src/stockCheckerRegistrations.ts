@@ -1,3 +1,4 @@
+import {CultBeautyStockChecker} from './stockCheckers/cultbeautyStockChecker'
 import {CurrysStockChecker} from './stockCheckers/currysStockChecker'
 import {InStockChecker} from './stockCheckers/inStockChecker'
 import {OutOfStockChecker} from './stockCheckers/outOfStockChecker'
@@ -24,7 +25,7 @@ const stockCheckerRegistrations: [string, StockCheckerFactory][] = [
         (website) => new OutOfStockChecker(website, '.noStk'),
     ], [
         'http(s?):\/\/www.cultbeauty.co.uk',
-        (website) => new OutOfStockChecker(website, '.js-waitlist-header'),
+        (website) => new CultBeautyStockChecker(website),
     ],
 ]
 
