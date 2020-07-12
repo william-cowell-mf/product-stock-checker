@@ -1,6 +1,7 @@
 import {createNotification} from './notifications/notifcationFactory'
 import {NotSupportedStockCheckLogger, SupportedStockCheckLogger} from './stockCheckers/stockCheckLogger'
 import {StockChecker} from './stockCheckers/stockChecker'
+import {StockCheckErrorHandler} from './stockCheckers/stockCheckErrorHandler'
 import {StockCheckNotifier} from './stockCheckers/stockCheckNotifier'
 import {Website} from './configuration/configuration'
 
@@ -9,7 +10,8 @@ type StockCheckerFactory = (website: Website) => StockChecker
 const createDecoratedStockChecker = (stockChecker: StockChecker): StockChecker => {
     return stockChecker.isSupported ?
         new StockCheckNotifier(
-            new SupportedStockCheckLogger(stockChecker),
+            new SupportedStockCheckLogger(
+                new StockCheckErrorHandler(stockChecker)),
             createNotification) :
         new NotSupportedStockCheckLogger(stockChecker)
 }
